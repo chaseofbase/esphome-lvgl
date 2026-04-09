@@ -25,30 +25,6 @@ esp32:
 
 
 # -----------------------------------------------------------------------------
-# ESPHOME DEVICE IDENTITY
-# -----------------------------------------------------------------------------
-# Basic device information visible in Home Assistant.
-# - name: Internal hostname (used for mDNS, e.g., device-name.local)
-# - friendly_name: Human-readable name shown in Home Assistant UI
-# - area: Which room/area this device belongs to in Home Assistant
-#
-# These values come from variables ($name, etc.) defined in template.yaml
-# -----------------------------------------------------------------------------
-esphome:
-  name: ${name}
-  friendly_name: ${friendly_name}
-  area: ${room}
-
-# -----------------------------------------------------------------------------
-# LOGGING
-# -----------------------------------------------------------------------------
-# Outputs debug messages for troubleshooting.
-# View logs in ESPHome dashboard or via serial connection.
-# -----------------------------------------------------------------------------
-logger:
-
-
-# -----------------------------------------------------------------------------
 # PSRAM (External Memory)
 # -----------------------------------------------------------------------------
 # The display requires extra memory for graphics. PSRAM is external RAM
