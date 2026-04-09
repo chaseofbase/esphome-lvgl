@@ -1,0 +1,1063 @@
+# =============================================================================
+# LVGL TOUCHSCREEN INTERFACE
+# =============================================================================
+# This file defines the graphical user interface (GUI) for the ESP32 touchscreen
+# display. It creates buttons that control smart home devices through Home Assistant.
+#
+# HOW IT WORKS:
+# - Each button sends a command to Home Assistant when pressed (on_press/on_click)
+# - Buttons receive state updates from sensors defined in sensors.yaml
+# - When a sensor changes, the button's appearance updates (checked/unchecked)
+#
+# KEY CONCEPTS:
+# - "id:" is a unique name used to reference this element from other files
+# - "entity_id:" refers to a device/entity in Home Assistant
+# - "checkable: true" means the button shows on/off state visually
+# - "$variable" values (like $button_width) are defined in template.yaml
+# - Sensors in sensors.yaml watch Home Assistant and update button states
+# =============================================================================
+
+lvgl:
+  buffer_size: 100%
+  top_layer:
+    widgets:
+    
+      # =========================================================================
+      # TEMPERATURE DISPLAY (Top-left corner of screen)
+      # =========================================================================
+      # WHAT IT SHOWS:
+      #   Displays two temperatures: "outdoor° / indoor°"
+      #   Example: "15° / 22°" means 15°C outside, 22°C in the office
+      #
+      # WHERE THE DATA COMES FROM (defined in sensors.yaml):
+      #   - Left number: sensor.outdoor_temperature (weather/outdoor sensor)
+      #   - Right number: sensor.office_temperature (indoor room sensor)
+      #
+      # HOW IT UPDATES:
+      #   When either temperature sensor changes in Home Assistant, the
+      #   sensors.yaml file triggers an update to this label's text.
+      # =========================================================================
+      - label:
+          text: "-° / -°"
+          id: temperatures
+          styles: roboto15_style
+          align: top_left
+          x: 8
+          y: 4
+          text_color: 0xFFFFFF
+
+      # =========================================================================
+      # CLOCK DISPLAY (Top-center of screen)
+      # =========================================================================
+      # WHAT IT SHOWS:
+      #   Current time in 24-hour format (e.g., "14:30")
+      #
+      # WHERE THE DATA COMES FROM:
+      #   The time component (configured in addon/time.yaml) syncs with
+      #   Home Assistant's time and updates this label every minute.
+      # =========================================================================
+      - label:
+          text: "--:--"
+          id: display_time
+          styles: roboto15_style
+          align: top_mid
+          x: 0
+          y: 4
+          text_align: center
+          text_color: 0xFFFFFF
+          
+  pages:
+    - id: main_page
+      layout: 
+        type: flex
+        flex_flow: row_wrap
+      scrollbar_mode: "off"
+      scroll_dir: "ver"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 34
+      pad_bottom: 5
+      pad_left: 5
+      pad_right: 5
+      
+      widgets:
+
+        # =========================================================================
+        # BUTTON: Desk Lights
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Toggles the desk area lights on/off.
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: automation.toggle
+        #   Target: automation.desk_lights
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   sensors.yaml monitors: light.lounge_desk_lights // Disabled.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: desk_lights_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $lightbulb
+              - label:
+                  align: bottom_left
+                  text: "Desk"
+            on_press:
+              - homeassistant.service:
+                  service: automation.trigger
+                  data:
+                    entity_id: automation.desk_lights
+            #on_click:
+            #  - homeassistant.service:
+            #      service: light.toggle
+            #      data:
+            #        entity_id: light.lounge_desk_lights
+            #  - homeassistant.service:
+            #      action: switch.toggle
+            #      data:
+            #        entity_id: switch.plugmulti_lounge_switch_2
+            #  - homeassistant.service:
+            #      action: switch.toggle
+            #      data:
+            #        entity_id: switch.plugmulti_lounge_switch_3            
+
+        # =========================================================================
+        # BUTTON: Lounge Lights (Open Lounge Lights Controls Page)
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_lights_nav_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $lightbulb
+              - label:
+                  align: bottom_left
+                  text: "Lounge"
+            on_click:
+              - lvgl.page.show: lounge_lights_page
+        
+        # =========================================================================
+        # BUTTON: Lounge Fan Light
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Turns the Overhead fan light on or off.
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: switch.toggle
+        #   Target: script.lounge_light_toggle
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_light_button
+            styles: control
+            widgets:
+              # Icon (shown when OFF)
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  id: lounge_fan_light_icon
+                  text: $fan_light
+              - label:
+                  align: bottom_left
+                  id: lounge_fan_light_label
+                  text: "Ceiling"
+            on_click:
+              - homeassistant.service:
+                  service: script.lounge_light_toggle
+
+        # =========================================================================
+        # BUTTON: Under Desk LED's
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Activates the "Desk LED's" lighting scene - a preset that turns on
+        #   LED strip accent lighting for a decorative effect.
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: automation.trigger
+        #   Target: automation.led_s_desk
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: automation_led_s_desk_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  id: scene_features_icon                
+                  text: $ledstrip
+              - label:
+                  align: bottom_left
+                  id: scene_features_label
+                  text: "Desk LED's"
+            on_press:
+              - homeassistant.service:
+                  service: automation.trigger
+                  data:
+                    entity_id: automation.led_s_desk
+
+        # =========================================================================
+        # BUTTON: Fingerbot
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Activates the Fingerbot to turn on the amp
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: automation.trigger
+        #   Target: automation.fingerbot_lounge_toggle
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: fingerbot_lounge_toggle_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $arrow_collapse_down
+              - label:
+                  align: bottom_left
+                  text: "Fingerbot"
+            on_press:
+              - homeassistant.service:
+                  service: automation.trigger
+                  data:
+                    entity_id: automation.fingerbot_lounge_toggle
+
+
+        # =========================================================================
+        # BUTTON: Curtain (Open Curtain Controls Page)
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Navigates to the dedicated curtain control page.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: curtain_robot_front_door_nav_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $curtain_closed
+              - label:
+                  align: bottom_left
+                  text: "Front Door"
+            on_click:
+              - lvgl.page.show: curtain_robot_front_door_page
+
+        # =========================================================================
+        # BUTTON: Ceiling Fan
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Opens the Ceiling Fan control page.
+        #
+        # WHEN PRESSED:
+        #   Navigates to the fan controls page.
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   It doesn't.
+        #   Because this triggers a HA script there's no way to track device status
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $ceiling_fan
+              - label:
+                  align: bottom_left
+                  text: "Fan"
+            on_click:
+              - lvgl.page.show: lounge_fan_page
+
+        # =========================================================================
+        # BUTTON: Curtain - Kitchen (Open Curtain Controls Page)
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Navigates to the dedicated curtain control page.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: curtain_nav_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $curtain_closed
+              - label:
+                  align: bottom_left
+                  text: "Kitchen"
+            on_click:
+              - lvgl.page.show: curtain_kitchen_page
+
+        # =========================================================================
+        # BUTTON: ALL OFF
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Turns all off in the Lounge
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant automation: lounge_all_off
+        #   Target: automation.lounge_all_off
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_all_off_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $toggle_switch_off
+              - label:
+                  align: bottom_left
+                  text: "All Off"
+            on_press:
+              - homeassistant.service:
+                  service: automation.trigger
+                  data:
+                    entity_id: automation.lounge_all_off
+
+        # =========================================================================
+        # BUTTON: Air Fryer
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Turns a power outlet on or off.
+        #   This controls a smart plug that supplies power to the Air Fryer.
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: switch.toggle
+        #   Target: switch.plug_kitchen_boiler
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   sensors.yaml monitors: switch.plug_kitchen_boiler
+        #   When the switch is ON, this button appears "checked" (highlighted)
+        #   When the switch is OFF, this button appears unchecked (dimmed)
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: air_fryer_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  id: air_fryer_icon
+                  text: $stove
+              - label:
+                  align: bottom_left
+                  id: air_fryer_label
+                  text: "Air Fryer"
+            on_click:
+              - homeassistant.service:
+                  service: switch.toggle
+                  data:
+                    entity_id: switch.plug_kitchen_boiler
+
+        # =========================================================================
+        # BUTTON: Dimmed Scene
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Activates the "Dimmed" lighting scene - very low light levels,
+        #   useful for watching movies or reducing eye strain at night.
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: scene.turn_on
+        #   Target: scene.office_dimmed
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   sensors.yaml monitors: binary_sensor.office_scene_dimmed
+        #   When that sensor is ON, this button appears "checked" (highlighted)
+        # =========================================================================
+        #  button: 
+        #    height: $button_height_single
+        #    width: $button_width
+        #    checkable: false
+        #    id: office_scene_dimmed_button
+        #    styles: control
+        #    widgets:
+        #      - label:
+        #          text_font: $icon_font
+        #          align: top_left
+        #          id: office_scene_dimmed_icon                
+        #          text: $nightlight
+        #      - label:
+        #          align: bottom_left
+        #          id: office_scene_dimmed_label
+        #          text: "Dimmed"
+        #    on_press:
+        #      - homeassistant.service:
+        #          service: scene.turn_on
+        #          data:
+        #            entity_id: scene.office_dimmed
+        # =========================================================================
+
+        # =========================================================================
+        # Lounge Lights page
+        # =========================================================================
+    - id: lounge_lights_page
+      layout: 
+        type: flex
+        flex_flow: row
+      scrollbar_mode: "off"
+      scroll_dir: "hor"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 34
+      pad_bottom: 5
+      pad_left: 5
+      pad_right: 5
+
+      widgets:
+
+        # =========================================================================
+        # BUTTON: Back (Return to Main Page)
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_lights_back_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $chevron_left
+              - label:
+                  align: bottom_left
+                  text: "Back"
+            on_click:
+              - lvgl.page.show: main_page
+
+        # =========================================================================
+        # BUTTON: Lounge Lights
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Toggles the Lounge lights on/off.
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: light.toggle
+        #   Target: light.lounge_lights
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   sensors.yaml monitors: light.lounge_lights
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: lounge_lights_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $lightbulb
+              - label:
+                  align: bottom_left
+                  text: "Bulbs"
+            on_click:
+              - homeassistant.service:
+                  service: automation.trigger
+                  data:
+                    entity_id: automation.lamp_lounge
+        # =========================================================================
+        # BUTTON: Radiator LED Strip
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: led_dimmer_lounge_radiator_lights_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $ledstrip
+              - label:
+                  align: bottom_left
+                  text: "Radiator"
+            on_click:
+              - homeassistant.service:
+                  service: light.toggle
+                  data:
+                    entity_id: light.led_dimmer_lounge_radiator
+
+        # =========================================================================
+        # Curtain Robot - Front Door page.
+        # =========================================================================
+
+    - id: curtain_robot_front_door_page
+      layout: 
+        type: flex
+        flex_flow: row
+      scrollbar_mode: "off"
+      scroll_dir: "hor"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 34
+      pad_bottom: 5
+      pad_left: 5
+      pad_right: 5
+
+      widgets:
+
+        # =========================================================================
+        # BUTTON: Back (Return to Main Page)
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: curtain_robot_front_door_back_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $chevron_left
+              - label:
+                  align: bottom_left
+                  text: "Back"
+            on_click:
+              - lvgl.page.show: main_page
+
+        # =========================================================================
+        # BUTTON: Blind Open (100%)
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Opens the front door curtain completely (100% open position).
+        #   Maximum natural light enters the room.
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: cover.set_cover_position
+        #   Target: cover.curtain_robot_front_door
+        #   Position: 100 (fully open)
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   sensors.yaml reads the blind's current position from Home Assistant.
+        #   A template sensor (office_blind_100) checks if position is within
+        #   3% of 100%. If true, this button appears "checked" (highlighted).
+        #   The 3% tolerance accounts for minor motor positioning differences.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: curtain_robot_front_door_open_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $curtain_open
+              - label:
+                  align: bottom_left
+                  text: "Open"
+            on_click:
+              - homeassistant.service:
+                  service: cover.set_cover_position
+                  data:
+                    entity_id: cover.curtain_robot_front_door
+                    position: "100"
+
+        # =========================================================================
+        # BUTTON: Blind Close (0%)
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Closes the front door curtain completely (0% open position).
+        #   Blocks all natural light and provides privacy.
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: cover.set_cover_position
+        #   Target: cover.curtain_robot_front_door
+        #   Position: 0 (fully closed)
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   sensors.yaml reads the curtain robot's current position from Home Assistant.
+        #   A template sensor (curtain_robot_front_door_0) checks if position is within
+        #   3% of 0%. If true, this button appears "checked" (highlighted).
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: curtain_robot_front_door_close_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $curtain_closed
+              - label:
+                  align: bottom_left
+                  text: "Close"
+            on_click:
+              - homeassistant.service:
+                  service: cover.set_cover_position
+                  data:
+                    entity_id: cover.curtain_robot_front_door
+                    position: "0"
+
+        # =========================================================================
+        # Lounge Fan Page.
+        # =========================================================================
+
+    - id: lounge_fan_page
+      layout: 
+        type: flex
+        flex_flow: row_wrap
+      scrollbar_mode: "off"
+      scroll_dir: "hor"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 34
+      pad_bottom: 5
+      pad_left: 5
+      pad_right: 5
+
+      widgets:
+
+        # =========================================================================
+        # BUTTON: Back (Return to Main Page)
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_back_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $chevron_left
+              - label:
+                  align: bottom_left
+                  text: "Back"
+            on_click:
+              - lvgl.page.show: main_page
+
+        # =========================================================================
+        # BUTTON: Lounge Fan (Experimental Layout)
+        # =========================================================================
+        #- button: 
+        #    height: $button_height_single
+        #    width: $button_width
+        #    checkable: false
+        #    id: lounge_fan_nav_button
+        #    styles: control
+        #    widgets:
+        #      - label:
+        #          text_font: $icon_font
+        #          align: top_left
+        #          text: $fan_light
+        #      - label:
+        #          align: bottom_left
+        #          text: "Lab"
+        #    on_click:
+        #      - lvgl.page.show: lounge_fan_page
+
+        # =========================================================================
+        # BUTTON: Fan On Speed 1 Power
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Turns the Ceiling Fan on at speed 1
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: switch.toggle
+        #   Target: script.lounge_fan_speed_1
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   It can't monitor scripts.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_power1_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $fan_speed_1
+              - label:
+                  align: bottom_left
+                  text: "On 1"
+            on_click:
+              - homeassistant.service:
+                  service: script.lounge_fan_speed_1
+
+        # =========================================================================
+        # BUTTON: Fan On Speed 2 Power
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Turns the Ceiling Fan on at speed 2
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: switch.toggle
+        #   Target: script.lounge_fan_speed_2
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   It can't monitor scripts.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_power2_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $fan_speed_2
+              - label:
+                  align: bottom_left
+                  text: "On 2"
+            on_click:
+              - homeassistant.service:
+                  service: script.lounge_fan_speed_2
+
+        # =========================================================================
+        # BUTTON: Fan On Speed 3 Power
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Turns the Ceiling Fan on at speed 3
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: switch.toggle
+        #   Target: script.lounge_fan_speed_3
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   It can't monitor scripts.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_power3_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $fan_speed_3
+              - label:
+                  align: bottom_left
+                  text: "On 3"
+            on_click:
+              - homeassistant.service:
+                  service: script.lounge_fan_speed_3
+
+        # =========================================================================
+        # BUTTON: Fan On Speed 4 Power
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Turns the Ceiling Fan on at speed 4
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: switch.toggle
+        #   Target: script.lounge_fan_speed_4
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   It can't monitor scripts.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_power4_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $fan_chevron_up
+              - label:
+                  align: bottom_left
+                  text: "On 4"
+            on_click:
+              - homeassistant.service:
+                  service: script.lounge_fan_speed_4
+
+        # =========================================================================
+        # BUTTON: Fan On Speed 5 Power
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Turns the Ceiling Fan on at speed 5
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: switch.toggle
+        #   Target: script.lounge_fan_speed_5
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   It can't monitor scripts.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_power5_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $fan_plus
+              - label:
+                  align: bottom_left
+                  text: "On 5"
+            on_click:
+              - homeassistant.service:
+                  service: script.lounge_fan_speed_5
+
+        # =========================================================================
+        # BUTTON: Fan On Speed 6 Power
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Turns the Ceiling Fan on at speed 6
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: switch.toggle
+        #   Target: script.lounge_fan_speed_6
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   It can't monitor scripts.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_power6_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $fan_plus
+              - label:
+                  align: bottom_left
+                  text: "On 6"
+            on_click:
+              - homeassistant.service:
+                  service: script.lounge_fan_speed_6
+
+        # =========================================================================
+        # BUTTON: Fan Reverse
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Reverses the Ceiling Fan
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: switch.toggle
+        #   Target: script.lounge_reverse
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   It can't monitor scripts.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_powerreverse_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $fan
+              - label:
+                  align: bottom_left
+                  text: "Reverse"
+            on_click:
+              - homeassistant.service:
+                  service: script.lounge_fan_reverse
+
+        # =========================================================================
+        # BUTTON: Fan Off
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Turns the Ceiling Fan off
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: switch.toggle
+        #   Target: script.lounge_fan_off
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   It can't monitor scripts.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_fan_poweroff_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $fan_off
+              - label:
+                  align: bottom_left
+                  text: "Off"
+            on_click:
+              - homeassistant.service:
+                  service: script.lounge_fan_off
+
+        # =========================================================================
+        # Curtain Robot - Kitchen page.
+        # =========================================================================
+
+    - id: curtain_kitchen_page
+      layout: 
+        type: flex
+        flex_flow: row
+      scrollbar_mode: "off"
+      scroll_dir: "hor"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 34
+      pad_bottom: 5
+      pad_left: 5
+      pad_right: 5
+
+      widgets:
+
+        # =========================================================================
+        # BUTTON: Back (Return to Main Page)
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: curtain_robot_kitchen_back_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $chevron_left
+              - label:
+                  align: bottom_left
+                  text: "Back"
+            on_click:
+              - lvgl.page.show: main_page
+
+        # =========================================================================
+        # BUTTON: Curtain Open (100%)
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Opens the kitchen curtain completely (100% open position).
+        #   Maximum natural light enters the room.
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: cover.set_cover_position
+        #   Target: cover.curtain_robot_kitchen
+        #   Position: 100 (fully open)
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   sensors.yaml reads the blind's current position from Home Assistant.
+        #   A template sensor (curtain_robot_kitchen_100) checks if position is within
+        #   3% of 100%. If true, this button appears "checked" (highlighted).
+        #   The 3% tolerance accounts for minor motor positioning differences.
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: curtain_robot_kitchen_open_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $curtain_open
+              - label:
+                  align: bottom_left
+                  text: "Open"
+            on_click:
+              - homeassistant.service:
+                  service: cover.set_cover_position
+                  data:
+                    entity_id: cover.curtain_robot_kitchen
+                    position: "0"
+
+        # =========================================================================
+        # BUTTON: Curtain Close (0%)
+        # =========================================================================
+        # WHAT THIS BUTTON DOES:
+        #   Closes the front door curtain completely (0% open position).
+        #   Blocks all natural light and provides privacy.
+        #
+        # WHEN PRESSED:
+        #   Calls Home Assistant service: cover.set_cover_position
+        #   Target: cover.curtain_robot_kitchen
+        #   Position: 0 (fully closed)
+        #
+        # HOW THE BUTTON KNOWS IF IT'S ACTIVE:
+        #   sensors.yaml reads the curtain robot's current position from Home Assistant.
+        #   A template sensor (curtain_robot_kitchen_0) checks if position is within
+        #   3% of 0%. If true, this button appears "checked" (highlighted).
+        # =========================================================================
+        - button: 
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: curtain_robot_kitchen_close_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $curtain_closed
+              - label:
+                  align: bottom_left
+                  text: "Close"
+            on_click:
+              - homeassistant.service:
+                  service: cover.set_cover_position
+                  data:
+                    entity_id: cover.curtain_robot_kitchen
+                    position: "100"
