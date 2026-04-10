@@ -191,7 +191,7 @@ lvgl:
         #   Calls Home Assistant service: automation.trigger
         #   Target: automation.led_s_desk
         # =========================================================================
-        - button: 
+        - button:
             height: $button_height_single
             width: $button_width
             checkable: true
@@ -200,12 +200,13 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_left               
+                  align: top_left
                   text: $lightbulb
               - label:
                   align: bottom_left
                   text: "Blue Lamp"
-            on_click:
+            on_press:
+              - logger.log: "Blue Lamp button pressed"
               - homeassistant.service:
                   service: light.toggle
                   data:
