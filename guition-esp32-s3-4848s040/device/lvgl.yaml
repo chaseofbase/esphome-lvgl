@@ -194,24 +194,22 @@ lvgl:
         - button: 
             height: $button_height_single
             width: $button_width
-            checkable: false
-            id: automation_led_s_desk_button
+            checkable: true
+            id: blue_lamp_button
             styles: control
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_left
-                  id: scene_features_icon                
-                  text: $ledstrip
+                  align: top_left               
+                  text: $lightbulb
               - label:
                   align: bottom_left
-                  id: scene_features_label
-                  text: "Desk LED's"
-            on_press:
+                  text: "Blue Lamp"
+            on_click:
               - homeassistant.service:
-                  service: automation.trigger
+                  service: light.toggle
                   data:
-                    entity_id: automation.led_s_desk
+                    entity_id: light.blue_lamp
 
         # =========================================================================
         # BUTTON: Fingerbot
