@@ -40,6 +40,24 @@ font:
       "\U000F0792",  # arrow-collapse-down
       "\U000F0522",  # toggle-switch-off
       "\U000F04DE",  # stove
+      "\U000F144F",  # mdi-clock-time-five-outline
+      "\U000F0020",  # mdi-alarm
+      "\U000F059C",  # mdi-weather-sunset-up
+      "\U000F0599",  # mdi-weather-sunny
+      "\U000F16E3",  # mdi-clipboard-clock-outline
+      "\U000F059B",  # mdi-weather-sunset-down
+      "\U000F0594",  # mdi-weather-night
+      "\U000F04B2",  # mdi-sleep
+      "\U000F093D",  # mdi-audio-video
+      "\U000F186B",  # mdi-audio-input-rca
+      "\U000F186C",  # mdi-audio-input-stereo-minijack
+      "\U000F186D",  # mdi-audio-input-xlr
+      "\U000F00B0",  # mdi-bluetooth-audio
+      "\U000F09D4",  # mdi-cassette
+      "\U000F1749",  # mdi-cast-audio-variant
+      "\U000F0384",  # mdi-music-box
+      "\U000F0AD4",  # mdi-music-circle-outline
+      "\U000F04C3",  # mdi-speaker
       ]
 
 # Map icons to names
@@ -78,3 +96,20 @@ substitutions:
   arrow_collapse_down: "\U000F0792"
   toggle_switch_off: "\U000F0522"
   stove:          "\U000F04DE"
+  clock-five:     "\U000F144F"
+  alarm:          "\U000F0020"
+  sunrise:        "\U000F059C"
+  sun:            "\U000F0599"
+  work:           "\U000F16E3"
+  sunset:         "\U000F059B"
+  night:          "\U000F0594"
+  sleep:          "\U000F04B2"
+  media_player:   "\U000F093D"
+  input_rca:      "\U000F186B"
+  input_aux:      "\U000F186C"
+  input_xlr:      "\U000F186D"
+  input_cast:     "\U000F1749"
+  bluetooth:      "\U000F00B0"
+  cassette:       "\U000F09D4"
+  music_circle:   "\U000F0AD4"
+  speaker:        "\U000F04C3"
