@@ -131,7 +131,7 @@ lvgl:
               - label:
                   text_font: $icon_font
                   align: top_left
-                  text: $lightbulb
+                  text: $lamp
               - label:
                   align: bottom_left
                   text: "Blue Lamp"

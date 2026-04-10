@@ -59,6 +59,10 @@ font:
       "\U000F0AD4",  # mdi-music-circle-outline
       "\U000F04C3",  # mdi-speaker
       "\U000F08DD",  # mdi-floor-lamp
+      "\U000F1040",  # mdi-floor-lamp-dual
+      "\U000F06B5",  # mdi-lamp
+      "\U000F095F",  # mdi-desk-lamp
+      "\U000F1239",  # mdi-desk
       ]
 
 # Map icons to names
@@ -114,3 +118,7 @@ substitutions:
   cassette:       "\U000F09D4"
   music_circle:   "\U000F0AD4"
   speaker:        "\U000F04C3"
+  floor_lamp:     "\U000F08DD"
+  floor_lamp_dual: "\U000F1040"
+  lamp:           "\U000F06B5"
+  desk_lamp:      "\U000F095F"
