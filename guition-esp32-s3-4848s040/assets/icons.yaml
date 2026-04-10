@@ -58,6 +58,7 @@ font:
       "\U000F0384",  # mdi-music-box
       "\U000F0AD4",  # mdi-music-circle-outline
       "\U000F04C3",  # mdi-speaker
+      "\U000F08DD",  # mdi-floor-lamp
       ]
 
 # Map icons to names
