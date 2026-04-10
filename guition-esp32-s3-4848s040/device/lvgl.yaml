@@ -181,7 +181,7 @@ lvgl:
                   service: script.lounge_light_toggle
 
         # =========================================================================
-        # BUTTON: Under Desk LED's
+        # BUTTON: Blue Lamp
         # =========================================================================
         # WHAT THIS BUTTON DOES:
         #   Activates the "Desk LED's" lighting scene - a preset that turns on

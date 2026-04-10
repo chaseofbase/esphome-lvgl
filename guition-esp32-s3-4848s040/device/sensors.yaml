@@ -192,7 +192,7 @@ sensor:
 binary_sensor:
 
   # ===========================================================================
-  # Automation: Desk LED's
+  # Automation: Blue Lamp
   # ===========================================================================
   # WHAT IT MONITORS:
   #   Whether the "Features" (LED accent) lighting scene is currently active
