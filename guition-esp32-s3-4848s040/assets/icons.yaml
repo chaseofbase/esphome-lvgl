@@ -96,7 +96,7 @@ substitutions:
   arrow_collapse_down: "\U000F0792"
   toggle_switch_off: "\U000F0522"
   stove:          "\U000F04DE"
-  clock-five:     "\U000F144F"
+  clock:          "\U000F144F"
   alarm:          "\U000F0020"
   sunrise:        "\U000F059C"
   sun:            "\U000F0599"
