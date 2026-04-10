@@ -1,42 +1,8 @@
-# =============================================================================
-# LVGL TOUCHSCREEN INTERFACE
-# =============================================================================
-# This file defines the graphical user interface (GUI) for the ESP32 touchscreen
-# display. It creates buttons that control smart home devices through Home Assistant.
-#
-# HOW IT WORKS:
-# - Each button sends a command to Home Assistant when pressed (on_press/on_click)
-# - Buttons receive state updates from sensors defined in sensors.yaml
-# - When a sensor changes, the button's appearance updates (checked/unchecked)
-#
-# KEY CONCEPTS:
-# - "id:" is a unique name used to reference this element from other files
-# - "entity_id:" refers to a device/entity in Home Assistant
-# - "checkable: true" means the button shows on/off state visually
-# - "$variable" values (like $button_width) are defined in template.yaml
-# - Sensors in sensors.yaml watch Home Assistant and update button states
-# =============================================================================
-
 lvgl:
   buffer_size: 100%
+
   top_layer:
     widgets:
-    
-      # =========================================================================
-      # TEMPERATURE DISPLAY (Top-left corner of screen)
-      # =========================================================================
-      # WHAT IT SHOWS:
-      #   Displays two temperatures: "outdoor° / indoor°"
-      #   Example: "15° / 22°" means 15°C outside, 22°C in the office
-      #
-      # WHERE THE DATA COMES FROM (defined in sensors.yaml):
-      #   - Left number: sensor.outdoor_temperature (weather/outdoor sensor)
-      #   - Right number: sensor.office_temperature (indoor room sensor)
-      #
-      # HOW IT UPDATES:
-      #   When either temperature sensor changes in Home Assistant, the
-      #   sensors.yaml file triggers an update to this label's text.
-      # =========================================================================
       - label:
           text: "-° / -°"
           id: temperatures
@@ -46,16 +12,6 @@ lvgl:
           y: 4
           text_color: 0xFFFFFF
 
-      # =========================================================================
-      # CLOCK DISPLAY (Top-center of screen)
-      # =========================================================================
-      # WHAT IT SHOWS:
-      #   Current time in 24-hour format (e.g., "14:30")
-      #
-      # WHERE THE DATA COMES FROM:
-      #   The time component (configured in addon/time.yaml) syncs with
-      #   Home Assistant's time and updates this label every minute.
-      # =========================================================================
       - label:
           text: "--:--"
           id: display_time
@@ -65,8 +21,8 @@ lvgl:
           y: 4
           text_align: center
           text_color: 0xFFFFFF
-          
-   pages:
+
+  pages:
     - id: main_page
       layout:
         type: flex
@@ -132,8 +88,8 @@ lvgl:
                   text: "Media"
             on_press:
               - lvgl.page.show: lounge_media_page
-              
-    - id:: lounge_lights_page
+
+    - id: lounge_lights_page
       layout:
         type: flex
         flex_flow: row_wrap
@@ -244,7 +200,7 @@ lvgl:
                   action: light.toggle
                   data:
                     entity_id: light.lounge_bulb_3
-                    
+
     - id: lounge_scenes_page
       layout:
         type: flex
@@ -393,7 +349,3 @@ lvgl:
             text: "Media later"
             align: center
             text_color: 0xFFFFFF
-
-
-      
-  

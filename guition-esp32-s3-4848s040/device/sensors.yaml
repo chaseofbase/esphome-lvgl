@@ -1,48 +1,4 @@
-# =============================================================================
-# SENSORS - Home Assistant State Synchronization
-# =============================================================================
-# This file creates sensors that monitor Home Assistant entities and update
-# the touchscreen buttons to reflect the current state of your smart devices.
-#
-# WHY THIS FILE EXISTS:
-# When you press a button on the touchscreen, it sends a command to Home
-# Assistant. But what if someone turns on a light using their phone, or a
-# scene activates automatically? This file ensures the touchscreen display
-# always shows the ACTUAL state of each device, not just what was last pressed.
-#
-# HOW IT WORKS:
-# 1. Each sensor subscribes to a Home Assistant entity (switch, sensor, etc.)
-# 2. When that entity's state changes, the "on_state" or "on_value" trigger fires
-# 3. The trigger updates the corresponding button in lvgl.yaml to show the new state
-#
-# KEY CONCEPTS:
-# - "platform: homeassistant" = reads state directly from Home Assistant
-# - "platform: template" = calculates a value using code (lambda)
-# - "entity_id:" = the Home Assistant device/entity to monitor
-# - "id:" = unique name to reference this sensor elsewhere in ESPHome
-# - "trigger_on_initial_state: true" = update button immediately when device boots
-# - "lvgl.widget.update" = changes how a button looks on screen
-# - "checked: !lambda return x;" = x is the sensor's boolean state (true/false)
-#
-# RELATIONSHIP TO lvgl.yaml:
-# Each sensor here has a matching button in lvgl.yaml:
-#   - This file READS state from Home Assistant → updates button appearance
-#   - lvgl.yaml SENDS commands to Home Assistant → when button is pressed
-# =============================================================================
-
-
-
-
-# =============================================================================
-# BINARY SENSORS (On/Off States)
-# =============================================================================
-# These sensors track on/off states and update button appearances.
-# When the sensor is ON (true), the button shows as "checked" (highlighted).
-# When the sensor is OFF (false), the button shows as unchecked (dimmed).
-# =============================================================================
-
 binary_sensor:
-
   - platform: homeassistant
     id: blue_lamp_state
     entity_id: light.blue_lamp
@@ -86,7 +42,3 @@ binary_sensor:
           id: lounge_bulb_3_button
           state:
             checked: !lambda return x;
- 
-            
-            
-  
