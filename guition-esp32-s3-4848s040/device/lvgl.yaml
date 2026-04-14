@@ -409,7 +409,7 @@ lvgl:
             on_press:
               - lvgl.page.show: main_page
 
-           - label:
-               text: "Climate Later"
-               align: center
-               text_color: 0xFFFFFF
+        - label:
+            text: "Climate Later"
+            align: center
+            text_color: 0xFFFFFF
