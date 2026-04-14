@@ -37,7 +37,8 @@ lvgl:
       layout:
         type: flex
         flex_flow: row_wrap
-        justify_content: space_evenly
+        pad_row: 10
+        pad_column: 10
       scrollbar_mode: "off"
       scroll_dir: "ver"
       width: 100%
