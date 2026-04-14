@@ -98,6 +98,23 @@ lvgl:
                   text: "Media"
             on_press:
               - lvgl.page.show: lounge_media_page
+              
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: media_nav_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $thermometer
+              - label:
+                  align: bottom_left
+                  text: "Climate"
+            on_press:
+              - lvgl.page.show: lounge_climate_page       
 
     - id: lounge_lights_page
       layout:
@@ -359,3 +376,40 @@ lvgl:
             text: "Media later"
             align: center
             text_color: 0xFFFFFF
+            
+    - id: lounge_climate_page
+      layout:
+        type: flex
+        flex_flow: row_wrap
+      scrollbar_mode: "off"
+      scroll_dir: "ver"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 34
+      pad_bottom: 5
+      pad_left: 5
+      pad_right: 5
+
+      widgets:
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_temperature_back_button
+            styles: control 
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $chevron_left
+              - label:
+                  align: bottom_left
+                  text: "Back"
+            on_press:
+              - lvgl.page.show: main_page
+
+           - label:
+               text: "Climate Later"
+               align: center
+               text_color: 0xFFFFFF

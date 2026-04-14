@@ -63,6 +63,7 @@ font:
       "\U000F06B5",  # mdi-lamp
       "\U000F095F",  # mdi-desk-lamp
       "\U000F1239",  # mdi-desk
+      "\U000F050F",  # mdi-thermometer
       ]
 
 # Map icons to names
@@ -122,3 +123,4 @@ substitutions:
   floor_lamp_dual: "\U000F1040"
   lamp:           "\U000F06B5"
   desk_lamp:      "\U000F095F"
+  thermometer:    "\U000F050F"
