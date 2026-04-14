@@ -1,3 +1,27 @@
+sensor:
+  - platform: homeassistant
+    entity_id: sensor.lounge_room_temperature_temperature
+    id: lounge_temperature
+    on_value:
+      - lvgl.label.update:
+          id: temperatures
+          text:
+            format: "%d° / %d%%"
+            args: [ '(int)round(x)', '(int)round(id(lounge_humidity).state)' ]
+
+  - platform: homeassistant
+    entity_id: sensor.lounge_room_temperature_humidity
+    id: lounge_humidity
+    on_value:
+      - lvgl.label.update:
+          id: temperatures
+          text:
+            format: "%d° / %d%%"
+            args: [ '(int)round(id(lounge_temperature).state)', '(int)round(x)' ]
+
+
+
+
 binary_sensor:
   - platform: homeassistant
     id: blue_lamp_state
