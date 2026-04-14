@@ -103,7 +103,7 @@ lvgl:
             height: $button_height_single
             width: $button_width
             checkable: false
-            id: media_nav_button
+            id: climate_nav_button
             styles: control
             widgets:
               - label:
