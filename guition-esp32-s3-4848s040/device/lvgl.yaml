@@ -387,7 +387,7 @@ lvgl:
                   text: $vol_down
               - label:
                   align: bottom_left
-                  text: "Vol -"
+                  text: "Less"
             on_press:
               - homeassistant.action:
                   action: media_player.volume_down
@@ -407,7 +407,7 @@ lvgl:
                   text: $vol_up
               - label:
                   align: bottom_left
-                  text: "Vol +"
+                  text: "More"
             on_press:
               - homeassistant.action:
                   action: media_player.volume_up
