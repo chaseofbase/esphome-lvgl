@@ -414,6 +414,7 @@ lvgl:
                   data:
                     entity_id: media_player.living_room_wiim
                     
+                    
         - button:
             height: $button_height_single
             width: $button_width
@@ -433,7 +434,7 @@ lvgl:
                   action: media_player.volume_mute
                   data:
                     entity_id: media_player.living_room_wiim
-                    is_volume_muted: !lambda 'return !id(wiim_muted).state;'
+                    is_volume_muted: !lambda 'return !id(wiim_muted).state;'            
                              
             
     - id: lounge_climate_page
