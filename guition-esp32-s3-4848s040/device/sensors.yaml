@@ -20,8 +20,6 @@ sensor:
             args: [ '(int)round(id(lounge_temperature).state)', '(int)round(x)' ]
 
 
-
-
 binary_sensor:
   - platform: homeassistant
     id: blue_lamp_state

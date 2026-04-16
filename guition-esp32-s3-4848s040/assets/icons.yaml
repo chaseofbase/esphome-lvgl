@@ -64,7 +64,9 @@ font:
       "\U000F095F",  # mdi-desk-lamp
       "\U000F1239",  # mdi-desk
       "\U000F050F",  # mdi-thermometer
-      ]
+      "\U000F075D",  # mdi-volume-plus
+      "\U000F075E",  # mdi-volume-minus
+      "\U000F075F",  # mdi-volume-mute
 
 # Map icons to names
 substitutions:
@@ -124,3 +126,6 @@ substitutions:
   lamp:           "\U000F06B5"
   desk_lamp:      "\U000F095F"
   thermometer:    "\U000F050F"
+  vol_up:         "\U000F075D"
+  vol_down:       "\U000F075E"
+  vol_mute:       "\U000F075F"
