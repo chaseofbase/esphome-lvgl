@@ -35,6 +35,7 @@ packages:
   setup:
     url: https://github.com/chaseofbase/esphome-lvgl
     ref: main
+    refresh: 0s
     files:
       - guition-esp32-s3-4848s040/device/device.yaml
       - guition-esp32-s3-4848s040/device/sensors.yaml
@@ -45,4 +46,4 @@ packages:
       - guition-esp32-s3-4848s040/assets/fonts.yaml
       - guition-esp32-s3-4848s040/assets/icons.yaml
       - guition-esp32-s3-4848s040/theme/button.yaml
-    refresh: 0s
+    
