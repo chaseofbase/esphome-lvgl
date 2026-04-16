@@ -65,15 +65,5 @@ binary_sensor:
           state:
             checked: !lambda return x;
 
-  - platform: homeassistant
-    id: wiim_muted
-    entity_id: media_player.living_room_wiim
-    attribute: is_volume_muted
-    on_state:
-      then:
-        lvgl.widget.update:
-          id: wiim_mute_button
-          state:
-            checked: !lambda return x;
             
  
