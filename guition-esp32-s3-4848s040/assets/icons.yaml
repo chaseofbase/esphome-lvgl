@@ -67,6 +67,7 @@ font:
       "\U000F075D",  # mdi-volume-plus
       "\U000F075E",  # mdi-volume-minus
       "\U000F075F",  # mdi-volume-mute
+     ]
 
 # Map icons to names
 substitutions:
