@@ -374,10 +374,45 @@ lvgl:
             on_press:
               - lvgl.page.show: main_page
 
-        - label:
-            text: "Media later"
-            align: center
-            text_color: 0xFFFFFF
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: wiim_volume_down_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $minus
+              - label:
+                  align: bottom_left
+                  text: "Vol -"
+            on_press:
+              - homeassistant.action:
+                  action: media_player.volume_down
+                  data:
+                    entity_id: media_player.living_room_wiim
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: wiim_volume_up_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $plus
+              - label:
+                  align: bottom_left
+                  text: "Vol +"
+            on_press:
+              - homeassistant.action:
+                  action: media_player.volume_up
+                  data:
+                    entity_id: media_player.living_room_wiim
             
     - id: lounge_climate_page
       layout:
