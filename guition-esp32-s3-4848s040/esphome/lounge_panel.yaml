@@ -34,6 +34,7 @@ web_server:
 packages:
   setup:
     url: https://github.com/chaseofbase/esphome-lvgl
+    ref: main
     files:
       - guition-esp32-s3-4848s040/device/device.yaml
       - guition-esp32-s3-4848s040/device/sensors.yaml
