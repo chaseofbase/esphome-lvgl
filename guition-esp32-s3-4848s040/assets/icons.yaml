@@ -69,6 +69,7 @@ font:
       "\U000F075E",  # mdi-volume-minus
       "\U000F075F",  # mdi-volume-mute
       "\U000F10D0",  # mdi-briefcase-clock
+      "\U000F12E1",  # mdi-file-clock
      ]
 
 # Map icons to names
@@ -112,6 +113,7 @@ substitutions:
   sunrise:        "\U000F059C"
   sun:            "\U000F0599"
   work:           "\U000F16E3"
+  fileclock:      "\U000F12E1"
   noon:           "\U000F10D0"
   sunset:         "\U000F059B"
   sunset2:        "\U000F059A"
