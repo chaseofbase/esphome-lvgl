@@ -271,10 +271,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_center
+                  align: top_left
                   text: $alarm
               - label:
-                  align: bottom_center
+                  align: bottom_left
                   text: "Wake"
             on_press:
               - homeassistant.action:
@@ -291,10 +291,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_center
+                  align: top_left
                   text: $sunrise
               - label:
-                  align: bottom_center
+                  align: bottom_left
                   text: "Early AM"
             on_press:
               - homeassistant.action:
@@ -311,10 +311,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_center
+                  align: top_left
                   text: $sun
               - label:
-                  align: bottom_center
+                  align: bottom_left
                   text: "Morning"
             on_press:
               - homeassistant.action:
@@ -331,10 +331,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_center
+                  align: top_left
                   text: $noon
               - label:
-                  align: bottom_center
+                  align: bottom_left
                   text: "Noon"
             on_press:
               - homeassistant.action:
@@ -351,10 +351,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_center
+                  align: top_left
                   text: $sunset2
               - label:
-                  align: bottom_center
+                  align: bottom_left
                   text: "Evening"
             on_press:
               - homeassistant.action:
@@ -371,10 +371,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_center
+                  align: top_left
                   text: $night
               - label:
-                  align: bottom_center
+                  align: bottom_left
                   text: "Goodnight"
             on_press:
               - homeassistant.action:
