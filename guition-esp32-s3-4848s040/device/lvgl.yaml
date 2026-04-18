@@ -341,12 +341,12 @@ lvgl:
                   action: scene.turn_on
                   data:
                     entity_id: scene.lounge_mid_day
- 
-         - button:
+
+        - button:
             height: $button_height_single
             width: $button_width
             checkable: false
-            id: scene_lounge_evening
+            id: scene_lounge_evening_button
             styles: control
             widgets:
               - label:
@@ -360,11 +360,9 @@ lvgl:
               - homeassistant.action:
                   action: scene.turn_on
                   data:
-                    entity_id: scene.lounge_room_evening                   
-                    
+                    entity_id: scene.lounge_room_evening
 
-
-          - button:
+        - button:
             height: $button_height_single
             width: $button_width
             checkable: false
@@ -373,10 +371,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_left
+                  align: top_center
                   text: $night
               - label:
-                  align: bottom_left
+                  align: bottom_center
                   text: "Goodnight"
             on_press:
               - homeassistant.action:
