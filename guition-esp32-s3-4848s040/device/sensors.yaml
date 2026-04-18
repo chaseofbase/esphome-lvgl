@@ -79,16 +79,16 @@ binary_sensor:
             
  
 text_sensor:
-  - platform: homeassistant
-    entity_id: media_player.living_room_wiim
-    attribute: entity_picture
-    id: wiim_art_url
-    on_value:
-      then:
-        - online_image.set_url:
-            id: wiim_album_art
-            url: !lambda 'return x;'
-        - component.update: wiim_album_art
+#  - platform: homeassistant
+#    entity_id: media_player.living_room_wiim
+#    attribute: entity_picture
+#    id: wiim_art_url
+#    on_value:
+#      then:
+#        - online_image.set_url:
+#            id: wiim_album_art
+#            url: !lambda 'return x;'
+#        - component.update: wiim_album_art
         
   - platform: homeassistant
     entity_id: media_player.living_room_wiim
