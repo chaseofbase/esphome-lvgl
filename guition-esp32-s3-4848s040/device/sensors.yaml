@@ -35,7 +35,7 @@ binary_sensor:
   - platform: homeassistant
     id: lounge_bulb_1_state
     entity_id: light.lounge_bulb_1
-    trigger_on_initial_state: true
+    trigger_on_initial_state2: true
     on_state:
       then:
         lvgl.widget.update:
@@ -78,3 +78,47 @@ binary_sensor:
               checked: !lambda return x;
             
  
+text_sensor:
+  - platform: homeassistant
+    entity_id: media_player.living_room_wiim
+    attribute: media_title
+    id: wiim_media_title
+    on_value:
+      - lvgl.label.update:
+          id: wiim_title_label
+          text: !lambda |-
+            if (x.empty()) return std::string("Silencio");
+            return x;
+
+  - platform: homeassistant
+    entity_id: media_player.living_room_wiim
+    attribute: media_artist
+    id: wiim_media_artist
+    on_value:
+      - lvgl.label.update:
+          id: wiim_artist_label
+          text: !lambda |-
+            if (x.empty()) return std::string("");
+            return x;
+
+  - platform: homeassistant
+    entity_id: media_player.living_room_wiim
+    attribute: media_album_name
+    id: wiim_media_album
+    on_value:
+      - lvgl.label.update:
+          id: wiim_album_label
+          text: !lambda |-
+            if (x.empty()) return std::string("");
+            return x;
+
+  - platform: homeassistant
+    entity_id: media_player.living_room_wiim
+    attribute: source
+    id: wiim_source
+    on_value:
+      - lvgl.label.update:
+          id: wiim_source_label
+          text: !lambda |-
+            if (x.empty()) return std::string("Source: --");
+            return std::string("Source: ") + x;
