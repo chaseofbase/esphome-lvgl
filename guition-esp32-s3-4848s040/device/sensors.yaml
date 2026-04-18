@@ -123,13 +123,3 @@ text_sensor:
             if (x.empty()) return std::string("");
             return x;
 
-  - platform: homeassistant
-    entity_id: media_player.living_room_wiim
-    attribute: source
-    id: wiim_source
-    on_value:
-      - lvgl.label.update:
-          id: wiim_source_label
-          text: !lambda |-
-            if (x.empty()) return std::string("Source: --");
-            return std::string("Source: ") + x;
