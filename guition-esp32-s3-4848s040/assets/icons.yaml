@@ -45,6 +45,7 @@ font:
       "\U000F059C",  # mdi-weather-sunset-up
       "\U000F0599",  # mdi-weather-sunny
       "\U000F16E3",  # mdi-clipboard-clock-outline
+      "\U000F059A",  # mdi-weather-sunset
       "\U000F059B",  # mdi-weather-sunset-down
       "\U000F0594",  # mdi-weather-night
       "\U000F04B2",  # mdi-sleep
@@ -67,6 +68,7 @@ font:
       "\U000F075D",  # mdi-volume-plus
       "\U000F075E",  # mdi-volume-minus
       "\U000F075F",  # mdi-volume-mute
+      "\U000F10D0",  # mdi-briefcase-clock
      ]
 
 # Map icons to names
@@ -110,7 +112,9 @@ substitutions:
   sunrise:        "\U000F059C"
   sun:            "\U000F0599"
   work:           "\U000F16E3"
+  noon:           "\U000F10D0"
   sunset:         "\U000F059B"
+  sunset2:        "\U000F059A"
   night:          "\U000F0594"
   sleep:          "\U000F04B2"
   media_player:   "\U000F093D"

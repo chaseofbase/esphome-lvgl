@@ -271,10 +271,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_left
+                  align: top_center
                   text: $alarm
               - label:
-                  align: bottom_left
+                  align: bottom_center
                   text: "Wake"
             on_press:
               - homeassistant.action:
@@ -291,10 +291,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_left
+                  align: top_center
                   text: $sunrise
               - label:
-                  align: bottom_left
+                  align: bottom_center
                   text: "Early AM"
             on_press:
               - homeassistant.action:
@@ -311,16 +311,58 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_left
+                  align: top_center
                   text: $sun
               - label:
-                  align: bottom_left
+                  align: bottom_center
                   text: "Morning"
             on_press:
               - homeassistant.action:
                   action: scene.turn_on
                   data:
                     entity_id: scene.lounge_morning
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_morning_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_center
+                  text: $noon
+              - label:
+                  align: bottom_center
+                  text: "Noon"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.lounge_mid_day
+ 
+         - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_morning_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_center
+                  text: $sunset2
+              - label:
+                  align: bottom_center
+                  text: "Evening"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.lounge_mid_day                   
+                    
+
 
         - button:
             height: $button_height_single
