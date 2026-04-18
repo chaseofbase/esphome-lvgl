@@ -70,6 +70,10 @@ font:
       "\U000F075F",  # mdi-volume-mute
       "\U000F10D0",  # mdi-briefcase-clock
       "\U000F12E1",  # mdi-file-clock
+      "\U000F03E6",  # mdi-pause-circle-outline
+      "\U000F040D",  # mdi-play-circle-outline
+      "\U000F0664",  # mdi-skip-previous-circle-outline
+      "\U000F0662",  # mdi-skip-next-circle-outline
      ]
 
 # Map icons to names
@@ -136,3 +140,7 @@ substitutions:
   vol_up:         "\U000F075D"
   vol_down:       "\U000F075E"
   vol_mute:       "\U000F075F"
+  pause:          "\U000F03E6"
+  play:           "\U000F040D"
+  previous:       "\U000F0664"
+  next:           "\U000F0662"

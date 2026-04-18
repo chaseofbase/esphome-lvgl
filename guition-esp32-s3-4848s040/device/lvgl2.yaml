@@ -381,12 +381,12 @@ lvgl:
                   action: scene.turn_on
                   data:
                     entity_id: scene.lounge_room_goodnight
+
     - id: lounge_media_page
       layout:
         type: flex
         flex_flow: column
         pad_row: 8
-        flex_align_main: SPACE_BETWEEN
       scrollbar_mode: "off"
       scroll_dir: "ver"
       width: 100%
@@ -396,55 +396,48 @@ lvgl:
       pad_bottom: 8
       pad_left: 8
       pad_right: 8
-    
+
       widgets:
+        - image:
+            src: wiim_album_art
+            width: 220
+            height: 220
+            align: center
+
+        - label:
+            id: wiim_title_label
+            text: "Silencio"
+            width: 100%
+            long_mode: DOT
+            text_align: center
+            text_color: 0xFFFFFF
+
+        - label:
+            id: wiim_artist_label
+            text: ""
+            width: 100%
+            long_mode: DOT
+            text_align: center
+            text_color: 0xCCCCCC
+
+        - label:
+            id: wiim_album_label
+            text: ""
+            width: 100%
+            long_mode: DOT
+            text_align: center
+            text_color: 0xAAAAAA
+
         - container:
             width: 100%
-            layout:
-              type: flex
-              flex_flow: column
-              pad_row: 8
-            widgets:
-              - image:
-                  src: wiim_album_art
-                  width: 220
-                  height: 220
-                  align: center
-
-              - label:
-                  id: wiim_title_label
-                  text: "Nothing playing"
-                  width: 100%
-                  long_mode: DOT
-                  text_align: center
-                  text_color: 0xFFFFFF
-
-              - label:
-                  id: wiim_artist_label
-                  text: ""
-                  width: 100%
-                  long_mode: DOT
-                  text_align: center
-                  text_color: 0xCCCCCC
-
-              - label:
-                  id: wiim_album_label
-                  text: ""
-                  width: 100%
-                  long_mode: DOT
-                  text_align: center
-                  text_color: 0xAAAAAA
-     
-        - container:
-            width: 100%
-            height: 64
+            height: 70
             layout:
               type: flex
               flex_flow: row
-              pad_column: 6
+              pad_column: 8
             widgets:
               - button:
-                  width: 16%
+                  width: 25%
                   height: 100%
                   checkable: false
                   id: lounge_media_back_button
@@ -458,7 +451,7 @@ lvgl:
                     - lvgl.page.show: main_page
 
               - button:
-                  width: 16%
+                  width: 25%
                   height: 100%
                   checkable: false
                   id: wiim_volume_down_button
@@ -475,7 +468,7 @@ lvgl:
                           entity_id: media_player.living_room_wiim
 
               - button:
-                  width: 16%
+                  width: 25%
                   height: 100%
                   checkable: false
                   id: wiim_volume_up_button
@@ -492,7 +485,7 @@ lvgl:
                           entity_id: media_player.living_room_wiim
 
               - button:
-                  width: 16%
+                  width: 25%
                   height: 100%
                   checkable: true
                   id: wiim_mute_button
@@ -507,42 +500,9 @@ lvgl:
                         action: media_player.volume_mute
                         data:
                           entity_id: media_player.living_room_wiim
-                          is_volume_muted: !lambda 'return !id(wiim_muted).state;'
-
-              - button:
-                  width: 16%
-                  height: 100%
-                  checkable: false
-                  id: wiim_play_button
-                  styles: control
-                  widgets:
-                    - label:
-                        text_font: $icon_font
-                        align: center
-                        text: $play
-                  on_press:
-                    - homeassistant.action:
-                        action: media_player.media_play
-                        data:
-                          entity_id: media_player.living_room_wiim
-
-              - button:
-                  width: 16%
-                  height: 100%
-                  checkable: false
-                  id: wiim_pause_button
-                  styles: control
-                  widgets:
-                    - label:
-                        text_font: $icon_font
-                        align: center
-                        text: $pause
-                  on_press:
-                    - homeassistant.action:
-                        action: media_player.media_pause
-                        data:
-                          entity_id: media_player.living_room_wiim
-
+                          is_volume_muted: !lambda 'return !id(wiim_muted).state;'           
+                             
+    
             
     - id: lounge_climate_page
       layout:
