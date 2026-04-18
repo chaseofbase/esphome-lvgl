@@ -326,7 +326,7 @@ lvgl:
             height: $button_height_single
             width: $button_width
             checkable: false
-            id: scene_morning_button
+            id: scene_mid_day_button
             styles: control
             widgets:
               - label:
@@ -346,7 +346,7 @@ lvgl:
             height: $button_height_single
             width: $button_width
             checkable: false
-            id: scene_morning_button
+            id: scene_lounge_evening
             styles: control
             widgets:
               - label:
@@ -360,11 +360,11 @@ lvgl:
               - homeassistant.action:
                   action: scene.turn_on
                   data:
-                    entity_id: scene.lounge_mid_day                   
+                    entity_id: scene.lounge_room_evening                   
                     
 
 
-        - button:
+          - button:
             height: $button_height_single
             width: $button_width
             checkable: false
