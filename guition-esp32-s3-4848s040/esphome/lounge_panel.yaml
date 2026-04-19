@@ -39,7 +39,7 @@ http_request:
   verify_ssl: false
 
 online_image:
-  - url: "https://example.com/placeholder.jpg"
+  - url: "https://cdn.qvm.com.au/wp-content/uploads/2020/10/The-Fresh-Pear_Banana-600x600.jpg"
     id: wiim_album_art
     format: jpeg
     type: RGB565
