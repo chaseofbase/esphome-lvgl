@@ -13,12 +13,12 @@ http_request:
   verify_ssl: false
 
 online_image:
-  - url: "http://192.168.0.202/data/roon_image_35_52187.jpeg"
+  - url: "http://192.168.0.35:8123/api/media_player_proxy/media_player.living_room_wiim"
     id: wiim_album_art
     format: jpeg
     type: RGB565
     resize: 220x220
-    update_interval: 1min
+    update_interval: 10s
 
 
 
