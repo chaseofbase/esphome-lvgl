@@ -7,21 +7,18 @@ esphome:
   name: ${name}
   friendly_name: ${friendly_name}
   area: ${room}
-  on_boot:
-    priority: -10
-    then:
-      - component.update: wiim_album_art
+
 
 http_request:
   verify_ssl: false
 
 online_image:
-  - url: "https://via.placeholder.com/300.png"
+  - url: "http://picsum.photos/200"
     id: wiim_album_art
-    format: png
+    format: jpeg
     type: RGB565
     resize: 220x220
-    update_interval: never
+    update_interval: 1min
 
 
 
