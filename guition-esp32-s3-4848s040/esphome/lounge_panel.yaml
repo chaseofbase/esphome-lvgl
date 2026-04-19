@@ -39,7 +39,7 @@ http_request:
   verify_ssl: false
 
 online_image:
-  - url: "https://cdn.qvm.com.au/wp-content/uploads/2020/10/The-Fresh-Pear_Banana-600x600.jpg"
+  - url: "http://placekitten.com/300/300"
     id: wiim_album_art
     format: jpeg
     type: RGB565

@@ -79,6 +79,7 @@ binary_sensor:
             
  
 text_sensor:
+
 #  - platform: homeassistant
 #    entity_id: media_player.living_room_wiim
 #    attribute: entity_picture
