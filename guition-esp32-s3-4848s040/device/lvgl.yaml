@@ -381,6 +381,8 @@ lvgl:
                   action: scene.turn_on
                   data:
                     entity_id: scene.lounge_room_goodnight
+                    
+                    
     - id: lounge_media_page
       layout:
         type: flex

@@ -44,7 +44,7 @@ online_image:
     format: jpeg
     type: RGB565
     resize: 220x220
-    update_interval: never
+    update_interval: 1h
 
 packages:
   setup:
