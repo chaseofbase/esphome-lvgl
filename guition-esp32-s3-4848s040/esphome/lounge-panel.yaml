@@ -13,7 +13,7 @@ http_request:
   verify_ssl: false
 
 online_image:
-  - url: "http://192.168.0.35:8123/api/media_player_proxy/media_player.living_room_wiim"
+  - url: "http://192.168.0.35:8123/api/media_player_proxy/media_player.living_room_wiim?token=637d1b9ec33cb58781091c1551ae0393bea393b0f4c5fb523ac5a8dfe306b532&cache=ef0ea88fb4292481"
     id: wiim_album_art
     format: jpeg
     type: RGB565
