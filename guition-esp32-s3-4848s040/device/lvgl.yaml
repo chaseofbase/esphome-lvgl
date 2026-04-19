@@ -415,7 +415,7 @@ lvgl:
 
               - label:
                   id: wiim_title_label
-                  text: "Nothing playing"
+                  text: "Silencio"
                   width: 100%
                   long_mode: DOT
                   text_align: center
