@@ -229,6 +229,26 @@ lvgl:
                   action: light.toggle
                   data:
                     entity_id: light.lounge_bulb_3
+                    
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: lounge_bulb_3_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $floor_lamp
+              - label:
+                  align: bottom_left
+                  text: "Reading Lamp"
+            on_press:
+              - homeassistant.action:
+                  action: light.toggle
+                  data:
+                    entity_id: light.reading_lamp
 
     - id: lounge_scenes_page
       layout:
