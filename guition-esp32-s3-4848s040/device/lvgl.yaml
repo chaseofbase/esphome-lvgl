@@ -427,12 +427,6 @@ lvgl:
               flex_flow: column
               pad_row: 8
             widgets:
-              - image:
-                  src: wiim_album_art
-                  width: 220
-                  height: 220
-                  align: center
-
               - label:
                   id: wiim_title_label
                   text: "Silencio"
