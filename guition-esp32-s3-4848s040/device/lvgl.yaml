@@ -243,7 +243,7 @@ lvgl:
                   text: $floor_lamp
               - label:
                   align: bottom_left
-                  text: "Reading Lamp"
+                  text: "Reading"
             on_press:
               - homeassistant.action:
                   action: light.toggle
