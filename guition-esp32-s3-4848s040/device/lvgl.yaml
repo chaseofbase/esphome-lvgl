@@ -234,7 +234,7 @@ lvgl:
             height: $button_height_single
             width: $button_width
             checkable: true
-            id: lounge_bulb_3_button
+            id: reading_lamp_button
             styles: control
             widgets:
               - label:
