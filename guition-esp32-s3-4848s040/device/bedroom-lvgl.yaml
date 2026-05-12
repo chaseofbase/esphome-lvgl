@@ -251,7 +251,7 @@ lvgl:
                     entity_id: switch.white_noise
 
       
-      
+        
     - id: bedroom_scenes_page
       layout:
         type: flex
@@ -271,7 +271,7 @@ lvgl:
             height: $button_height_single
             width: $button_width
             checkable: false
-            id: lounge_scenes_back_button
+            id: bedroom_scenes_back_button
             styles: control
             widgets:
               - label:
@@ -284,6 +284,171 @@ lvgl:
             on_press:
               - lvgl.page.show: main_page
 
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_bedroom_wake_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $alarm
+              - label:
+                  align: bottom_left
+                  text: "Wake"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.bedroom_wake
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_bedroom_early_morning_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $sunrise
+              - label:
+                  align: bottom_left
+                  text: "Early AM"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.bedroom_early_morning
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_bedroom_morning_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $sun
+              - label:
+                  align: bottom_left
+                  text: "Morning"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.bedroom_morning
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_bedroom_dusk_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $sunset
+              - label:
+                  align: bottom_left
+                  text: "Dusk"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.bedroom_dusk
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_bedroom_evening_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $sunset2
+              - label:
+                  align: bottom_left
+                  text: "Evening"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.bedroom_evening
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_bedroom_reading_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $floor_lamp
+              - label:
+                  align: bottom_left
+                  text: "Reading"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.bedroom_reading
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_bedroom_xxx_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $heart
+              - label:
+                  align: bottom_left
+                  text: "XXX"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.bedroom_xxx
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_bedroom_goodnight_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $sleep
+              - label:
+                  align: bottom_left
+                  text: "Goodnight"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.bedroom_goodnight
+       
+       
+       
+       
+
+       
        
                     
     - id: bedroom_media_page
