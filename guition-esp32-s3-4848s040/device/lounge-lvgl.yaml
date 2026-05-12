@@ -37,25 +37,25 @@ lvgl:
       layout:
         type: flex
         flex_flow: row_wrap
-        pad_row: 10
-        pad_column: 10
+        pad_row: 24
+        pad_column: 24
       scrollbar_mode: "off"
       scroll_dir: "ver"
       width: 100%
       bg_color: Black
       bg_opa: cover
-      pad_top: 52
-      pad_bottom: 5
-      pad_left: 10
-      pad_right: 10
+      pad_top: 72
+      pad_bottom: 20
+      pad_left: 44
+      pad_right: 44
 
       widgets:
         - button:
-            height: $button_height_single
-            width: $button_width
+            height: 150px
+            width: 170px
             checkable: false
             id: lights_nav_button
-            styles: control
+            styles: nav_lights
             widgets:
               - label:
                   text_font: $icon_font
@@ -68,11 +68,11 @@ lvgl:
               - lvgl.page.show: lounge_lights_page
 
         - button:
-            height: $button_height_single
-            width: $button_width
+            height: 150px
+            width: 170px
             checkable: false
             id: scenes_nav_button
-            styles: scene
+            styles: nav_scenes
             widgets:
               - label:
                   text_font: $icon_font
@@ -85,11 +85,11 @@ lvgl:
               - lvgl.page.show: lounge_scenes_page
 
         - button:
-            height: $button_height_single
-            width: $button_width
+            height: 150px
+            width: 170px
             checkable: false
             id: media_nav_button
-            styles: media
+            styles: nav_media
             widgets:
               - label:
                   text_font: $icon_font
@@ -102,11 +102,11 @@ lvgl:
               - lvgl.page.show: lounge_media_page
               
         - button:
-            height: $button_height_single
-            width: $button_width
+            height: 150px
+            width: 170px
             checkable: false
             id: climate_nav_button
-            styles: climate
+            styles: nav_climate
             widgets:
               - label:
                   text_font: $icon_font

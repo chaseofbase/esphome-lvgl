@@ -50,6 +50,22 @@ lvgl:
     - id: danger
       bg_color: $button_danger_color
       radius: $radius_round
+      
+    - id: nav_lights
+      bg_color: 0xD6A21E
+      radius: 28px
+
+    - id: nav_scenes
+      bg_color: 0x5B3F8C
+      radius: 28px
+
+    - id: nav_media
+      bg_color: 0x2F6F4E
+      radius: 28px
+
+    - id: nav_climate
+      bg_color: 0x8A3A2E
+      radius: 28px
 
   theme:
     button:
