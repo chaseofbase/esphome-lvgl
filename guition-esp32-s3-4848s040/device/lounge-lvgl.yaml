@@ -59,10 +59,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_left
+                  align: center
                   text: $lightbulb
               - label:
-                  align: bottom_left
+                  align: center
                   text: "Lights"
             on_press:
               - lvgl.page.show: lounge_lights_page
@@ -76,10 +76,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_left
+                  align: center
                   text: $clock
               - label:
-                  align: bottom_left
+                  align: center
                   text: "Scenes"
             on_press:
               - lvgl.page.show: lounge_scenes_page
@@ -93,10 +93,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_left
+                  align: center
                   text: $music_circle
               - label:
-                  align: bottom_left
+                  align: center
                   text: "Media"
             on_press:
               - lvgl.page.show: lounge_media_page
@@ -110,10 +110,10 @@ lvgl:
             widgets:
               - label:
                   text_font: $icon_font
-                  align: top_left
+                  align: center
                   text: $thermometer
               - label:
-                  align: bottom_left
+                  align: center
                   text: "Climate"
             on_press:
               - lvgl.page.show: lounge_climate_page       
