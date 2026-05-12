@@ -58,12 +58,9 @@ lvgl:
             styles: nav_lights
             widgets:
               - label:
-                  text_font: $icon_font
+                  text_font: $icon_font_large
                   align: center
                   text: $lightbulb
-              - label:
-                  align: center
-                  text: "Lights"
             on_press:
               - lvgl.page.show: lounge_lights_page
 
@@ -75,12 +72,9 @@ lvgl:
             styles: nav_scenes
             widgets:
               - label:
-                  text_font: $icon_font
+                  text_font: $icon_font_large
                   align: center
                   text: $clock
-              - label:
-                  align: center
-                  text: "Scenes"
             on_press:
               - lvgl.page.show: lounge_scenes_page
 
@@ -92,12 +86,9 @@ lvgl:
             styles: nav_media
             widgets:
               - label:
-                  text_font: $icon_font
+                  text_font: $icon_font_large
                   align: center
                   text: $music_circle
-              - label:
-                  align: center
-                  text: "Media"
             on_press:
               - lvgl.page.show: lounge_media_page
               
@@ -109,12 +100,9 @@ lvgl:
             styles: nav_climate
             widgets:
               - label:
-                  text_font: $icon_font
+                  text_font: $icon_font_large
                   align: center
                   text: $thermometer
-              - label:
-                  align: center
-                  text: "Climate"
             on_press:
               - lvgl.page.show: lounge_climate_page       
 
