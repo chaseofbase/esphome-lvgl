@@ -1,0 +1,615 @@
+lvgl:
+  buffer_size: 100%
+
+  top_layer:
+    widgets:
+      - label:
+          text: "-° / -°"
+          id: temperatures
+          styles: roboto15_style
+          align: top_left
+          x: 8
+          y: 4
+          text_color: 0xFFFFFF
+
+      - label:
+          text: "--:--"
+          id: display_time
+          styles: roboto15_style
+          align: top_mid
+          x: 0
+          y: 4
+          text_align: center
+          text_color: 0xFFFFFF
+          
+      - label:
+          text: "Lounge Room"
+          id: room_name
+          styles: roboto15_style
+          align: top_right
+          x: -8
+          y: 4
+          text_align: right
+          text_color: 0xFFFFFF
+
+  pages:
+    - id: main_page
+      layout:
+        type: flex
+        flex_flow: row_wrap
+        pad_row: 10
+        pad_column: 10
+      scrollbar_mode: "off"
+      scroll_dir: "ver"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 52
+      pad_bottom: 5
+      pad_left: 10
+      pad_right: 10
+
+      widgets:
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lights_nav_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $lightbulb
+              - label:
+                  align: bottom_left
+                  text: "Lights"
+            on_press:
+              - lvgl.page.show: lounge_lights_page
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scenes_nav_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $clock
+              - label:
+                  align: bottom_left
+                  text: "Scenes"
+            on_press:
+              - lvgl.page.show: lounge_scenes_page
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: media_nav_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $music_circle
+              - label:
+                  align: bottom_left
+                  text: "Media"
+            on_press:
+              - lvgl.page.show: lounge_media_page
+              
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: climate_nav_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $thermometer
+              - label:
+                  align: bottom_left
+                  text: "Climate"
+            on_press:
+              - lvgl.page.show: lounge_climate_page       
+
+    - id: lounge_lights_page
+      layout:
+        type: flex
+        flex_flow: row_wrap
+      scrollbar_mode: "off"
+      scroll_dir: "ver"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 34
+      pad_bottom: 5
+      pad_left: 5
+      pad_right: 5
+
+      widgets:
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_lights_back_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $chevron_left
+              - label:
+                  align: bottom_left
+                  text: "Back"
+            on_press:
+              - lvgl.page.show: main_page
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: blue_lamp_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $lamp
+              - label:
+                  align: bottom_left
+                  text: "Blue Lamp"
+            on_press:
+              - homeassistant.action:
+                  action: light.toggle
+                  data:
+                    entity_id: light.blue_lamp
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: lounge_bulb_1_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $lightbulb
+              - label:
+                  align: bottom_left
+                  text: "Bulb 1"
+            on_press:
+              - homeassistant.action:
+                  action: light.toggle
+                  data:
+                    entity_id: light.lounge_bulb_1
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: lounge_bulb_2_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $lightbulb
+              - label:
+                  align: bottom_left
+                  text: "Bulb 2"
+            on_press:
+              - homeassistant.action:
+                  action: light.toggle
+                  data:
+                    entity_id: light.lounge_bulb_2
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: lounge_bulb_3_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $lightbulb
+              - label:
+                  align: bottom_left
+                  text: "Bulb 3"
+            on_press:
+              - homeassistant.action:
+                  action: light.toggle
+                  data:
+                    entity_id: light.lounge_bulb_3
+                    
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: reading_lamp_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $floor_lamp
+              - label:
+                  align: bottom_left
+                  text: "Reading"
+            on_press:
+              - homeassistant.action:
+                  action: light.toggle
+                  data:
+                    entity_id: light.reading_lamp
+
+    - id: lounge_scenes_page
+      layout:
+        type: flex
+        flex_flow: row_wrap
+      scrollbar_mode: "off"
+      scroll_dir: "ver"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 34
+      pad_bottom: 5
+      pad_left: 5
+      pad_right: 5
+
+      widgets:
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_scenes_back_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $chevron_left
+              - label:
+                  align: bottom_left
+                  text: "Back"
+            on_press:
+              - lvgl.page.show: main_page
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_wake_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $alarm
+              - label:
+                  align: bottom_left
+                  text: "Wake"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.wake_2
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_early_morning_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $sunrise
+              - label:
+                  align: bottom_left
+                  text: "Early AM"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.early_morning_2
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_morning_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $sun
+              - label:
+                  align: bottom_left
+                  text: "Morning"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.lounge_morning
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_mid_day_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $noon
+              - label:
+                  align: bottom_left
+                  text: "Noon"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.lounge_mid_day
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_lounge_evening_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $sunset2
+              - label:
+                  align: bottom_left
+                  text: "Evening"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.lounge_room_evening
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: scene_goodnight_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $night
+              - label:
+                  align: bottom_left
+                  text: "Goodnight"
+            on_press:
+              - homeassistant.action:
+                  action: scene.turn_on
+                  data:
+                    entity_id: scene.lounge_room_goodnight
+                    
+                    
+    - id: lounge_media_page
+      layout:
+        type: flex
+        flex_flow: column
+        pad_row: 8
+        flex_align_main: SPACE_BETWEEN
+      scrollbar_mode: "off"
+      scroll_dir: "ver"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 34
+      pad_bottom: 8
+      pad_left: 8
+      pad_right: 8
+    
+      widgets:
+        - container:
+            width: 100%
+            layout:
+              type: flex
+              flex_flow: column
+              pad_row: 8
+            widgets:
+              - label:
+                  id: wiim_title_label
+                  text: "Silencio"
+                  width: 100%
+                  long_mode: DOT
+                  text_align: center
+                  text_color: 0xFFFFFF
+
+              - label:
+                  id: wiim_artist_label
+                  text: ""
+                  width: 100%
+                  long_mode: DOT
+                  text_align: center
+                  text_color: 0xCCCCCC
+
+              - label:
+                  id: wiim_album_label
+                  text: ""
+                  width: 100%
+                  long_mode: DOT
+                  text_align: center
+                  text_color: 0xAAAAAA
+     
+        - container:
+            width: 100%
+            height: 64
+            layout:
+              type: flex
+              flex_flow: row
+              pad_column: 6
+            widgets:
+              - button:
+                  width: 16%
+                  height: 100%
+                  checkable: false
+                  id: lounge_media_back_button
+                  styles: control
+                  widgets:
+                    - label:
+                        text_font: $icon_font
+                        align: center
+                        text: $chevron_left
+                  on_press:
+                    - lvgl.page.show: main_page
+
+              - button:
+                  width: 16%
+                  height: 100%
+                  checkable: false
+                  id: wiim_volume_down_button
+                  styles: control
+                  widgets:
+                    - label:
+                        text_font: $icon_font
+                        align: center
+                        text: $vol_down
+                  on_press:
+                    - homeassistant.action:
+                        action: media_player.volume_down
+                        data:
+                          entity_id: media_player.living_room_wiim
+
+              - button:
+                  width: 16%
+                  height: 100%
+                  checkable: false
+                  id: wiim_volume_up_button
+                  styles: control
+                  widgets:
+                    - label:
+                        text_font: $icon_font
+                        align: center
+                        text: $vol_up
+                  on_press:
+                    - homeassistant.action:
+                        action: media_player.volume_up
+                        data:
+                          entity_id: media_player.living_room_wiim
+
+              - button:
+                  width: 16%
+                  height: 100%
+                  checkable: true
+                  id: wiim_mute_button
+                  styles: control
+                  widgets:
+                    - label:
+                        text_font: $icon_font
+                        align: center
+                        text: $vol_mute
+                  on_press:
+                    - homeassistant.action:
+                        action: media_player.volume_mute
+                        data:
+                          entity_id: media_player.living_room_wiim
+                          is_volume_muted: !lambda 'return !id(wiim_muted).state;'
+
+              - button:
+                  width: 16%
+                  height: 100%
+                  checkable: false
+                  id: wiim_play_button
+                  styles: control
+                  widgets:
+                    - label:
+                        text_font: $icon_font
+                        align: center
+                        text: $play
+                  on_press:
+                    - homeassistant.action:
+                        action: media_player.media_play
+                        data:
+                          entity_id: media_player.living_room_wiim
+
+              - button:
+                  width: 16%
+                  height: 100%
+                  checkable: false
+                  id: wiim_pause_button
+                  styles: control
+                  widgets:
+                    - label:
+                        text_font: $icon_font
+                        align: center
+                        text: $pause
+                  on_press:
+                    - homeassistant.action:
+                        action: media_player.media_pause
+                        data:
+                          entity_id: media_player.living_room_wiim
+
+            
+    - id: lounge_climate_page
+      layout:
+        type: flex
+        flex_flow: row_wrap
+      scrollbar_mode: "off"
+      scroll_dir: "ver"
+      width: 100%
+      bg_color: Black
+      bg_opa: cover
+      pad_top: 34
+      pad_bottom: 5
+      pad_left: 5
+      pad_right: 5
+
+      widgets:
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: false
+            id: lounge_temperature_back_button
+            styles: control 
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $chevron_left
+              - label:
+                  align: bottom_left
+                  text: "Back"
+            on_press:
+              - lvgl.page.show: main_page
+
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: radiator_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $radiator
+                  
+              - label:
+                  align: bottom_left
+                  text: "Heater"
+
+            on_press:
+              - homeassistant.action:
+                  action: switch.toggle
+                  data:
+                    entity_id: switch.radiator
