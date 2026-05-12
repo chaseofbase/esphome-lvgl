@@ -72,7 +72,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: scenes_nav_button
-            styles: control
+            styles: scene
             widgets:
               - label:
                   text_font: $icon_font
@@ -89,7 +89,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: media_nav_button
-            styles: control
+            styles: media
             widgets:
               - label:
                   text_font: $icon_font
@@ -106,7 +106,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: climate_nav_button
-            styles: control
+            styles: climate
             widgets:
               - label:
                   text_font: $icon_font
@@ -138,7 +138,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: lounge_lights_back_button
-            styles: control
+            styles: nav
             widgets:
               - label:
                   text_font: $icon_font
@@ -270,7 +270,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: lounge_scenes_back_button
-            styles: control
+            styles: nav
             widgets:
               - label:
                   text_font: $icon_font
@@ -464,7 +464,7 @@ lvgl:
                   height: 100%
                   checkable: false
                   id: lounge_media_back_button
-                  styles: control
+                  styles: nav
                   widgets:
                     - label:
                         text_font: $icon_font
@@ -478,7 +478,7 @@ lvgl:
                   height: 100%
                   checkable: false
                   id: wiim_volume_down_button
-                  styles: control
+                  styles: media
                   widgets:
                     - label:
                         text_font: $icon_font
@@ -495,7 +495,7 @@ lvgl:
                   height: 100%
                   checkable: false
                   id: wiim_volume_up_button
-                  styles: control
+                  styles: media
                   widgets:
                     - label:
                         text_font: $icon_font
@@ -512,7 +512,7 @@ lvgl:
                   height: 100%
                   checkable: true
                   id: wiim_mute_button
-                  styles: control
+                  styles: media
                   widgets:
                     - label:
                         text_font: $icon_font
@@ -530,7 +530,7 @@ lvgl:
                   height: 100%
                   checkable: false
                   id: wiim_play_button
-                  styles: control
+                  styles: media
                   widgets:
                     - label:
                         text_font: $icon_font
@@ -547,7 +547,7 @@ lvgl:
                   height: 100%
                   checkable: false
                   id: wiim_pause_button
-                  styles: control
+                  styles: media
                   widgets:
                     - label:
                         text_font: $icon_font
@@ -580,7 +580,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: lounge_temperature_back_button
-            styles: control 
+            styles: nav 
             widgets:
               - label:
                   text_font: $icon_font
@@ -597,7 +597,7 @@ lvgl:
             width: $button_width
             checkable: true
             id: radiator_button
-            styles: control
+            styles: climate
             widgets:
               - label:
                   text_font: $icon_font
