@@ -124,3 +124,15 @@ text_sensor:
             if (x.empty()) return std::string("");
             return x;
 
+binary_sensor:
+  - platform: homeassistant
+    id: radiator_state
+    entity_id: switch.radiator
+    publish_initial_state: true
+    on_state:
+      then:
+        - lvgl.widget.update:
+            id: radiator_button
+            state:
+              checked: !lambda |-
+                return x;

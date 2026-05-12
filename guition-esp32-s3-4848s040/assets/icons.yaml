@@ -74,6 +74,7 @@ font:
       "\U000F040D",  # mdi-play-circle-outline
       "\U000F0664",  # mdi-skip-previous-circle-outline
       "\U000F0662",  # mdi-skip-next-circle-outline
+      "\U000F0438",  # mdi-radiator     
      ]
 
 # Map icons to names
@@ -144,3 +145,4 @@ substitutions:
   play:           "\U000F040D"
   previous:       "\U000F0664"
   next:           "\U000F0662"
+  radiator:       "\U000F0438"

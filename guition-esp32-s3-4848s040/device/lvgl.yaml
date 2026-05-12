@@ -592,7 +592,23 @@ lvgl:
             on_press:
               - lvgl.page.show: main_page
 
-        - label:
-            text: "Climate Later"
-            align: center
-            text_color: 0xFFFFFF
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: radiator_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $radiator
+              - label:
+                  align: bottom_left
+                  text: "Heater"
+
+            on_press:
+              - homeassistant.action:
+                  action: switch.toggle
+                  data:
+                    entity_id: switch.radiator
