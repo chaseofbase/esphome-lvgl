@@ -603,6 +603,7 @@ lvgl:
                   text_font: $icon_font
                   align: top_left
                   text: $radiator
+                  
               - label:
                   align: bottom_left
                   text: "Heater"
