@@ -232,9 +232,7 @@ lvgl:
 
       
       
-      
-      
-    - id: lounge_scenes_page
+    - id: bedroom_scenes_page
       layout:
         type: flex
         flex_flow: row_wrap
@@ -387,7 +385,7 @@ lvgl:
                     entity_id: scene.lounge_room_goodnight
                     
                     
-    - id: lounge_media_page
+    - id: bedroom_media_page
       layout:
         type: flex
         flex_flow: column
@@ -544,7 +542,7 @@ lvgl:
                           entity_id: media_player.living_room_wiim
 
             
-    - id: lounge_climate_page
+    - id: bedroom_climate_page
       layout:
         type: flex
         flex_flow: row_wrap

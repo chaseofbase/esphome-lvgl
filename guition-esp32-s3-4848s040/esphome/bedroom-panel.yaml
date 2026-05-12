@@ -47,8 +47,8 @@ packages:
     refresh: 0s
     files:
       - guition-esp32-s3-4848s040/device/device.yaml
-      - guition-esp32-s3-4848s040/device/sensors.yaml
-      - guition-esp32-s3-4848s040/device/lvgl.yaml
+      - guition-esp32-s3-4848s040/device/bedroom-sensors.yaml
+      - guition-esp32-s3-4848s040/device/bedroom-lvgl.yaml
       - guition-esp32-s3-4848s040/addon/backlight.yaml
       - guition-esp32-s3-4848s040/addon/time.yaml
       - guition-esp32-s3-4848s040/addon/network.yaml
