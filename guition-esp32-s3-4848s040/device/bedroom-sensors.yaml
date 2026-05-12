@@ -64,3 +64,14 @@ binary_sensor:
             id: dresser_lamp_button
             state:
               checked: !lambda return x;
+              
+  - platform: homeassistant
+    id: white_noise_state
+    entity_id: switch.white_noise
+    trigger_on_initial_state: true
+    on_state:
+      then:
+        - lvgl.widget.update:
+            id: white_noise_button
+            state:
+              checked: !lambda return x;

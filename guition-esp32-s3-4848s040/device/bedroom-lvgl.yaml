@@ -163,7 +163,7 @@ lvgl:
                   text: $lamp
               - label:
                   align: bottom_left
-                  text: "Nightstand"
+                  text: "Bedside"
             on_press:
               - homeassistant.action:
                   action: light.toggle
@@ -183,7 +183,7 @@ lvgl:
                   text: $lightbulb
               - label:
                   align: bottom_left
-                  text: "Floor Lamp 1"
+                  text: "Floor 1"
             on_press:
               - homeassistant.action:
                   action: light.toggle
@@ -203,7 +203,7 @@ lvgl:
                   text: $lightbulb
               - label:
                   align: bottom_left
-                  text: "Floor Lamp 2"
+                  text: "Floor 2"
             on_press:
               - homeassistant.action:
                   action: light.toggle
@@ -223,12 +223,32 @@ lvgl:
                   text: $lamp
               - label:
                   align: bottom_left
-                  text: "Dresser Lamp"
+                  text: "Dresser"
             on_press:
               - homeassistant.action:
                   action: light.toggle
                   data:
-                    entity_id: light.dresser_lamp     
+                    entity_id: light.dresser_lamp
+                    
+        - button:
+            height: $button_height_single
+            width: $button_width
+            checkable: true
+            id: white_noise_button
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  text: $whitenoise
+              - label:
+                  align: bottom_left
+                  text: "White Noise"
+            on_press:
+              - homeassistant.action:
+                  action: switch.toggle
+                  data:
+                    entity_id: switch.white_noise
 
       
       
