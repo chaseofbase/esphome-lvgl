@@ -1,14 +1,24 @@
 substitutions:
   icon_font: icon_font
   text_font: roboto19_font
+
   button_on_color: "0xFF8C00"
   button_text_color: "0xFFFFFF"
   button_control_color: "0x313131"
   button_webhook_color: "0x212121"
+
+  button_nav_color: "0x263547"
+  button_scene_color: "0x3A2B4F"
+  button_media_color: "0x243B35"
+  button_climate_color: "0x4A2E2E"
+  button_danger_color: "0x5A1F1F"
+
   button_height_single: 131px
   button_width: 105px
   padding: 10px
   radius: 8px
+  radius_round: 20px
+
   slider_background_color: "0x505050"
   slider_active_color: "0x2D2D2D"
   slider_knob_color: "0xE5E5E5"
@@ -20,7 +30,27 @@ lvgl:
 
     - id: control
       bg_color: $button_control_color
-      
+
+    - id: nav
+      bg_color: $button_nav_color
+      radius: $radius_round
+
+    - id: scene
+      bg_color: $button_scene_color
+      radius: $radius_round
+
+    - id: media
+      bg_color: $button_media_color
+      radius: $radius
+
+    - id: climate
+      bg_color: $button_climate_color
+      radius: $radius
+
+    - id: danger
+      bg_color: $button_danger_color
+      radius: $radius_round
+
   theme:
     button:
       text_font: $text_font

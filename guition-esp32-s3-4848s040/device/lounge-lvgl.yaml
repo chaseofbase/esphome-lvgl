@@ -287,7 +287,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: scene_wake_button
-            styles: control
+            styles: scene
             widgets:
               - label:
                   text_font: $icon_font
@@ -307,7 +307,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: scene_early_morning_button
-            styles: control
+            styles: scene
             widgets:
               - label:
                   text_font: $icon_font
@@ -327,7 +327,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: scene_morning_button
-            styles: control
+            styles: scene
             widgets:
               - label:
                   text_font: $icon_font
@@ -347,7 +347,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: scene_mid_day_button
-            styles: control
+            styles: scene
             widgets:
               - label:
                   text_font: $icon_font
@@ -367,7 +367,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: scene_lounge_evening_button
-            styles: control
+            styles: scene
             widgets:
               - label:
                   text_font: $icon_font
@@ -387,7 +387,7 @@ lvgl:
             width: $button_width
             checkable: false
             id: scene_goodnight_button
-            styles: control
+            styles: scene
             widgets:
               - label:
                   text_font: $icon_font
