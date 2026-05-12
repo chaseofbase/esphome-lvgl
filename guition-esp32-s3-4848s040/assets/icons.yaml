@@ -14,14 +14,6 @@ font:
       "\U000F050F",  # mdi-thermometer
       ]
 
-substitutions:
-  lightbulb:      "\U000F0335"
-  clock:          "\U000F144F"
-  music_circle:   "\U000F0AD4"
-  thermometer:    "\U000F050F"
-
-
-font:
   - file: 'https://github.com/Templarian/MaterialDesign-Webfont/raw/v7.4.47/fonts/materialdesignicons-webfont.ttf'
     id: icon_font
     size: 40

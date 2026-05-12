@@ -61,9 +61,6 @@ lvgl:
                   text_font: $icon_font_large
                   align: center
                   text: $lightbulb
-             - label:
-                  align: bottom_left
-                  text: "" 
             on_press:
               - lvgl.page.show: lounge_lights_page
 
@@ -78,9 +75,6 @@ lvgl:
                   text_font: $icon_font_large
                   align: center
                   text: $clock
-             - label:
-                  align: bottom_left
-                  text: "" 
             on_press:
               - lvgl.page.show: lounge_scenes_page
 
@@ -95,9 +89,6 @@ lvgl:
                   text_font: $icon_font_large
                   align: center
                   text: $music_circle
-             - label:
-                  align: bottom_left
-                  text: "" 
             on_press:
               - lvgl.page.show: lounge_media_page
               
@@ -112,9 +103,6 @@ lvgl:
                   text_font: $icon_font_large
                   align: center
                   text: $thermometer
-               - label:
-                  align: bottom_left
-                  text: "" 
             on_press:
               - lvgl.page.show: lounge_climate_page       
 
