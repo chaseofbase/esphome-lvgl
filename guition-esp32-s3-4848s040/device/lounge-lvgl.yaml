@@ -58,7 +58,7 @@ lvgl:
             styles: nav_lights
             widgets:
               - label:
-                  text_font: $icon_font_large
+                  text_font: icon_font_large
                   align: center
                   text: $lightbulb
             on_press:
@@ -72,7 +72,7 @@ lvgl:
             styles: nav_scenes
             widgets:
               - label:
-                  text_font: $icon_font_large
+                  text_font: icon_font_large
                   align: center
                   text: $clock
             on_press:
@@ -86,7 +86,7 @@ lvgl:
             styles: nav_media
             widgets:
               - label:
-                  text_font: $icon_font_large
+                  text_font: icon_font_large
                   align: center
                   text: $music_circle
             on_press:
@@ -100,7 +100,7 @@ lvgl:
             styles: nav_climate
             widgets:
               - label:
-                  text_font: $icon_font_large
+                  text_font: icon_font_large
                   align: center
                   text: $thermometer
             on_press:
